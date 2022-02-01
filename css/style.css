@@ -1,4 +1,6 @@
 body {
+    width: 100vw;
+    height: 100vh;
     background-color: #EEF9BF;
 }
 h1 {
@@ -8,10 +10,31 @@ h1 {
     color: #75B79E;
     text-align: center;
     margin-top: 40px;
-    margin-bottom: 47px;
+    margin-bottom: calc(47px - 17px);
+}
+section {
+    /* box-sizing: border-box; */
+    /* border: 1px solid black; */
+    padding-bottom: 17px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+figure {
+    box-sizing: border-box;
+    border: 1px solid #99CEA8;
+    background-image: url("/assets/front.png");
+    background-color: #A7E9AF;
+    background-position: center;
+    background-size: 100px;
+    background-repeat: no-repeat;
+    width: 117px;
+    height: 146px;
+    border-radius: 5px;
+    margin: 17px;
 }
 
-@media (min-width: 335px) {
+@media (min-width: 336px) {
     body {
         background-color: rebeccapurple;
     }
