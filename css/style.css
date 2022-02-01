@@ -22,16 +22,47 @@ section {
 }
 figure {
     box-sizing: border-box;
+    width: 117px;
+    height: 146px;
+    position: relative;
+    margin: 17px;
+}
+.carta {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all 1s;
+    transform-style: preserve-3d;
+    border-radius: 5px;
     border: 1px solid #99CEA8;
-    background-image: url("/assets/front.png");
     background-color: #A7E9AF;
+}
+.carta-costas {
+    background-color: red;
+    /* border: 1px solid black; */
+    /* transform: rotateY(0deg); */
+    background-image: url("/assets/front.png");
     background-position: center;
     background-size: 100px;
     background-repeat: no-repeat;
-    width: 117px;
-    height: 146px;
-    border-radius: 5px;
-    margin: 17px;
+}
+.carta-frente {
+    background-color: blue;
+    /* border: 1px solid black; */
+    transform: rotateY(-90deg);
+    background-image: url("/assets/bobrossparrot.gif");
+    background-position: center;
+    background-size: 100px;
+    background-repeat: no-repeat;
+}
+figure:hover .carta-costas {
+    transform: rotateY(180deg);
+}
+figure:hover .carta-frente {
+    transform: rotateY(0deg);
 }
 
 @media (min-width: 336px) {
