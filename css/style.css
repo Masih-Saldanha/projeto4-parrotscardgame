@@ -1,8 +1,10 @@
+/* CORPO DA PÁGINA */
 body {
     width: 100vw;
     height: 100vh;
     background-color: #EEF9BF;
 }
+/* REGRA DO TEXTO GERAL */
 h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -12,6 +14,7 @@ h1 {
     margin-top: 40px;
     margin-bottom: calc(47px - 17px);
 }
+/* DIV QUE ARMAZENA AS CARTAS */
 section {
     /* box-sizing: border-box; */
     /* border: 1px solid black; */
@@ -19,7 +22,10 @@ section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
+/* CARTAS - FRENTE E VERSO */
 figure {
     box-sizing: border-box;
     width: 117px;
@@ -41,7 +47,7 @@ figure {
     background-color: #A7E9AF;
 }
 .carta-costas {
-    background-color: red;
+    /* background-color: red; */
     /* border: 1px solid black; */
     /* transform: rotateY(0deg); */
     background-image: url("/assets/front.png");
@@ -50,26 +56,39 @@ figure {
     background-repeat: no-repeat;
 }
 .carta-frente {
-    background-color: blue;
+    /* background-color: blue; */
     /* border: 1px solid black; */
-    transform: rotateY(-90deg);
+    /* transform: rotateY(-90deg); */
     background-image: url("/assets/bobrossparrot.gif");
     background-position: center;
     background-size: 100px;
     background-repeat: no-repeat;
 }
+/* REFERÊNCIAS PARA GIRO DE CARTAS */
+/* 
 figure:hover .carta-costas {
     transform: rotateY(180deg);
 }
 figure:hover .carta-frente {
-    transform: rotateY(0deg);
+    transform: rotateY(360deg);
 }
+ */
 
+/* MODO DESKTOP */
 @media (min-width: 336px) {
     body {
         background-color: rebeccapurple;
     }
     h1 {
         font-size: 56px;
+    }
+    section {
+        /* box-sizing: border-box; */
+        /* border: 1px solid black; */
+        padding-bottom: 17px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: row;
     }
 }
