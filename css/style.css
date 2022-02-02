@@ -45,6 +45,7 @@ figure {
     border-radius: 5px;
     border: 1px solid #99CEA8;
     background-color: #A7E9AF;
+    /* transition-delay: 1s; */
 }
 .carta-costas {
     /* background-color: red; */
@@ -65,14 +66,18 @@ figure {
     background-repeat: no-repeat;
 }
 /* REFERÊNCIAS PARA GIRO DE CARTAS */
-/* 
-figure:hover .carta-costas {
+
+.virar-costas {
     transform: rotateY(180deg);
+    /* transition-delay: 1s; */
+    /* transform: rotateY(0deg); */
 }
-figure:hover .carta-frente {
+.virar-frente {
     transform: rotateY(360deg);
+    /* transition-delay: 1s; */
+    /* transform: rotateY(0deg); */
 }
- */
+
 
 /* MODO DESKTOP */
 @media (min-width: 336px) {
