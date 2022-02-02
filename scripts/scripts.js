@@ -2,13 +2,32 @@ let renderizarCartas = undefined;
 let numeroCartas = undefined;
 let virarFrente = undefined;
 let virarCostas = undefined;
+let cartasMarcadas = [];
 let contador = undefined;
 function virarCarta(numero) {
     virarFrente = document.querySelector(`.carta-frente-${numero}`);
     virarCostas = document.querySelector(`.carta-costas-${numero}`);
-    // console.log(virarFrente, virarCostas);
-    virarFrente.classList.toggle("virar-frente");
-    virarCostas.classList.toggle("virar-costas");
+    virarFrente.classList.add("virar-frente");
+    virarCostas.classList.add("virar-costas");
+    cartasMarcadas.push(numero);
+    if (cartasMarcadas[0] === cartasMarcadas[1]) {
+        cartasMarcadas.splice(1);
+    } 
+    // else {
+        // stop;
+    // }
+    console.log(cartasMarcadas);
+    if (cartasMarcadas.length >= 2) {
+        let carta1 = document.querySelector(`.carta-costas-${cartasMarcadas[0]}`);
+        let carta2 = document.querySelector(`.carta-costas-${cartasMarcadas[1]}`);
+        setTimeout(() => {
+            carta1.classList.remove("virar-frente");
+            carta1.classList.remove("virar-costas");
+            carta2.classList.remove("virar-frente");
+            carta2.classList.remove("virar-costas");
+            cartasMarcadas = [];
+        }, 1500);
+    }
 }
 
 function escolherNumeroCartas() {

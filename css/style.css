@@ -48,22 +48,23 @@ figure {
     /* transition-delay: 1s; */
 }
 .carta-costas {
-    /* background-color: red; */
+    background-color: red;
     /* border: 1px solid black; */
-    /* transform: rotateY(0deg); */
+    transform: rotateY(0deg);
     background-image: url("/assets/front.png");
     background-position: center;
     background-size: 100px;
     background-repeat: no-repeat;
 }
 .carta-frente {
-    /* background-color: blue; */
+    background-color: blue;
     /* border: 1px solid black; */
-    /* transform: rotateY(-90deg); */
+    transform: rotateY(0deg);
     background-image: url("/assets/bobrossparrot.gif");
     background-position: center;
     background-size: 100px;
     background-repeat: no-repeat;
+    /* backface-visibility: visible; */
 }
 /* REFERÊNCIAS PARA GIRO DE CARTAS */
 
