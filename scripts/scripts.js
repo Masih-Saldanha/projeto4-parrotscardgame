@@ -4,6 +4,11 @@ let numeroCartas = undefined;
 let virarFrente = undefined;
 let virarCostas = undefined;
 let cartasMarcadas = [];
+// poderia também, botar todos os nomes das imagens num array,
+// e chamar eles com os índices dos números baralhados...
+// tipo... nome = nomes[indicesBaralhados[i]]
+let bancoDeImagens = ["assets/bobrossparrot.gif", "assets/explodyparrot.gif", "assets/fiestaparrot.gif", "assets/metalparrot.gif", "assets/revertitparrot.gif", "assets/tripletsparrot.gif", "assets/unicornparrot.gif"];
+// img src="bancoDeImagens[${i}]"
 // FUNÇÃO DE ESCOLHER NÚMERO DE CARTAS, FAZER PARES E EMBARALHAR
 function escolherNumeroCartas() {
     while (numeroCartas < 4 || numeroCartas > 14 || (numeroCartas % 2) !== 0) {
@@ -24,13 +29,15 @@ function escolherNumeroCartas() {
         }
     }
         renderizarCartas.innerHTML = "";
-        for (let n = 0; n < listaDeCartas.length; n++) {
-            renderizarCartas.innerHTML += `
-            <figure class= "carta-${listaDeCartas[n]}" data-identifier="card" onclick="virarCarta(${listaDeCartas[n]})">
-                <div class="carta-frente carta-frente-${listaDeCartas[n]} carta" data-identifier="front-face"><h2>FRENTE ${listaDeCartas[n]}</h2></div>
-                <div class="carta-costas carta-costas-${listaDeCartas[n]} carta" data-identifier="back-face"><h2>COSTAS ${listaDeCartas[n]}</h2></div>
-            </figure>
-            `;
+        for (let i = 0; i < listaDeCartas.length; i++) {
+            // for (let n = 0; n < 2; n++) {
+                renderizarCartas.innerHTML += `
+                <figure class= "carta-${listaDeCartas[i]}" data-identifier="card" onclick="virarCarta(${listaDeCartas[i]})">
+                <div class="carta-frente carta-frente-${listaDeCartas[i]} carta" data-identifier="front-face"><h2>FRENTE ${listaDeCartas[i]}</h2></div>
+                <div class="carta-costas carta-costas-${listaDeCartas[i]} carta" data-identifier="back-face"><h2>COSTAS ${listaDeCartas[i]}</h2></div>
+                </figure>
+                `;
+            // }
         }
 }
 escolherNumeroCartas();
