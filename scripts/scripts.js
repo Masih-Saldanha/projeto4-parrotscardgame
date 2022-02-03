@@ -18,15 +18,19 @@ function virarCarta(numero) {
     // }
     console.log(cartasMarcadas);
     if (cartasMarcadas.length >= 2) {
-        let carta1 = document.querySelector(`.carta-costas-${cartasMarcadas[0]}`);
-        let carta2 = document.querySelector(`.carta-costas-${cartasMarcadas[1]}`);
+        // virarCarta().removeAttribute('onclick');
+        let cartaFrente1 = document.querySelector(`.carta-frente-${cartasMarcadas[0]}`);
+        let cartaFrente2 = document.querySelector(`.carta-frente-${cartasMarcadas[1]}`);
+        let cartaCostas1 = document.querySelector(`.carta-costas-${cartasMarcadas[0]}`);
+        let cartaCostas2 = document.querySelector(`.carta-costas-${cartasMarcadas[1]}`);
+        cartasMarcadas = [];
         setTimeout(() => {
-            carta1.classList.remove("virar-frente");
-            carta1.classList.remove("virar-costas");
-            carta2.classList.remove("virar-frente");
-            carta2.classList.remove("virar-costas");
-            cartasMarcadas = [];
-        }, 1500);
+            cartaFrente1.classList.remove("virar-frente");
+            cartaFrente2.classList.remove("virar-frente");
+            cartaCostas1.classList.remove("virar-costas");
+            cartaCostas2.classList.remove("virar-costas");
+            // virarCarta().addAttribute('onclick');
+        }, 1000);
     }
 }
 
@@ -38,8 +42,8 @@ function escolherNumeroCartas() {
 		renderizarCartas = document.querySelector('section');
 		renderizarCartas.innerHTML += `
         <figure data-identifier="card" onclick="virarCarta(${contador})">
-            <div class="carta-frente carta-frente-${contador} carta" data-identifier="front-carta"></div>
-            <div class="carta-costas carta-costas-${contador} carta" data-identifier="back-carta"></div>
+            <div class="carta-frente carta-frente-${contador} carta" data-identifier="front-face"><h2>FRENTE ${contador}</h2></div>
+            <div class="carta-costas carta-costas-${contador} carta" data-identifier="back-face"><h2>COSTAS ${contador}</h2></div>
         </figure>
         `;
 	}
