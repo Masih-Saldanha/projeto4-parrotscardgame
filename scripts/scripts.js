@@ -4,41 +4,50 @@ let numeroCartas = undefined;
 let virarFrente = undefined;
 let virarCostas = undefined;
 let cartasMarcadas = [];
+let teste = undefined;
 // poderia também, botar todos os nomes das imagens num array,
 // e chamar eles com os índices dos números baralhados...
 // tipo... nome = nomes[indicesBaralhados[i]]
 let bancoDeImagens = ["assets/bobrossparrot.gif", "assets/explodyparrot.gif", "assets/fiestaparrot.gif", "assets/metalparrot.gif", "assets/revertitparrot.gif", "assets/tripletsparrot.gif", "assets/unicornparrot.gif"];
+let imagem = undefined;
 // img src="bancoDeImagens[${i}]"
 // FUNÇÃO DE ESCOLHER NÚMERO DE CARTAS, FAZER PARES E EMBARALHAR
 function escolherNumeroCartas() {
     while (numeroCartas < 4 || numeroCartas > 14 || (numeroCartas % 2) !== 0) {
-    numeroCartas = prompt("Com quantas cartas deseja jogar? (Qualquer número par entre 4 e 14)");
+        numeroCartas = prompt("Com quantas cartas deseja jogar? (Qualquer número par entre 4 e 14)");
     }
     // renderizarCartas = document.querySelector('section');
-	for(let i = 0; i < numeroCartas; i = i + 1) {
-		renderizarCartas.innerHTML += `
-        <figure class= "carta-${i}" data-identifier="card" onclick="virarCarta(${i})">
-            <div class="carta-frente carta-frente-${i} carta" data-identifier="front-face"><h2>FRENTE ${i}</h2></div>
+    // for (let n = 0; n < 2; n++) {
+    for (let i = 0; i < numeroCartas; i = i + 1) {
+        renderizarCartas.innerHTML += `
+        <figure class= "carta-pai carta-${i}" data-identifier="card" onclick="virarCarta(${i})">
+            <div class="carta-frente carta-frente-${i} carta" data-identifier="front-face"><h2>FRENTE ${i}</h2><img class="imagem imagem-${i}" src="${bancoDeImagens[i % (numeroCartas / 2)]}"></div>
             <div class="carta-costas carta-costas-${i} carta" data-identifier="back-face"><h2>COSTAS ${i}</h2></div>
         </figure>
         `;
-        listaDeCartas.push(`${i}`);
-        if (parseInt(numeroCartas) === parseInt(listaDeCartas.length)) {
-            listaDeCartas.sort(comparador);
-            console.log(listaDeCartas);
-        }
     }
-        renderizarCartas.innerHTML = "";
-        for (let i = 0; i < listaDeCartas.length; i++) {
-            // for (let n = 0; n < 2; n++) {
-                renderizarCartas.innerHTML += `
-                <figure class= "carta-${listaDeCartas[i]}" data-identifier="card" onclick="virarCarta(${listaDeCartas[i]})">
-                <div class="carta-frente carta-frente-${listaDeCartas[i]} carta" data-identifier="front-face"><h2>FRENTE ${listaDeCartas[i]}</h2></div>
-                <div class="carta-costas carta-costas-${listaDeCartas[i]} carta" data-identifier="back-face"><h2>COSTAS ${listaDeCartas[i]}</h2></div>
-                </figure>
-                `;
-            // }
-        }
+    for (i = 0; i < numeroCartas; i++) {
+        imagem = renderizarCartas.querySelector(`.carta-${i}`);
+        listaDeCartas.push(imagem);
+    }
+    listaDeCartas.sort(comparador);
+    console.log(renderizarCartas);
+    // if (parseInt(numeroCartas) === parseInt(listaDeCartas.length)) {
+    //     listaDeCartas.sort(comparador);
+    //     console.log(listaDeCartas);
+    // }
+
+    // console.log(imagem);
+    // console.log(listaDeCartas);
+    // renderizarCartas.innerHTML = "";
+    for (let i = 0; i < listaDeCartas.length; i++) {
+        // teste = listaDeCartas[i].innerHTML;
+        // console.log(teste);
+        teste = renderizarCartas.querySelector(`.carta-${i}`);
+        let teste2 = `${listaDeCartas[i]}`;
+        console.log(teste);
+        // renderizarCartas.innerHTML += `${listaDeCartas[i]}`;
+    }
 }
 escolherNumeroCartas();
 // FUNÇÃO PARA EMBARALHAR ARRAY DE CARTAS
@@ -54,7 +63,7 @@ function virarCarta(numero) {
     cartasMarcadas.push(numero);
     if (cartasMarcadas[0] === cartasMarcadas[1]) {
         cartasMarcadas.splice(1);
-    } 
+    }
     console.log(cartasMarcadas);
     if (cartasMarcadas.length >= 2) {
         // virarCarta().removeAttribute('onclick');
