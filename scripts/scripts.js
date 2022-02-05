@@ -66,8 +66,8 @@ function virarCarta(numero) {
         // CONTROLE DE NÚMERO DE JOGADAS E PARES ENCONTRADOS
         paresEncontrados++;
         jogadas++;
-        console.log("Foram encontrados: " + paresEncontrados);
-        console.log(jogadas);
+        console.log("Foram encontrados: " + paresEncontrados + " Pares!");
+        console.log(`Foram feitas: ${jogadas} jogadas!`);
         cartasMarcadas = [];
         setTimeout(alertaVitoria, 1000);
     } else {
@@ -97,16 +97,17 @@ function alertaVitoria() {
         vitoria = true;
         alert(`Você ganhou em ${jogadas} jogadas em ${relogio.innerHTML} segundos!`);
         // BÔNUS DE JOGAR NOVAMENTE BUGANDO COM CARTAS DUPLICANDO
-        // let jogarNovamente = prompt("Gostaria de jogar novamente?");
-        // if (jogarNovamente === "sim") {
-        //     reset();
-        //     // escolherNumeroCartas();
-        // }
+        let jogarNovamente = prompt("Gostaria de jogar novamente?");
+        if (jogarNovamente === "sim") {
+            reset();
+            escolherNumeroCartas();
+        }
     }
 }
 // FUNÇÃO DE RESETAR O JOGO
 function reset() {
     renderizarCartas.innerHTML = ``;
+    listaDeCartas = [];
     numeroCartas = undefined;
     virarFrente = undefined;
     virarCostas = undefined;
@@ -115,6 +116,7 @@ function reset() {
     jogadas = 0;
     imagem = undefined;
     vitoria = false;
+    relogio.innerHTML = "0";
 }
 // FUNÇÃO DO RELOGIO
 function tempoPassando() {
