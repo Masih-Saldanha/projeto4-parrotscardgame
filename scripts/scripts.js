@@ -20,7 +20,7 @@ function escolherNumeroCartas() {
         renderizarCartas.innerHTML += `
         <figure class= "carta-pai carta-${i}" data-identifier="card" onclick="virarCarta(${i})">
             <div class="carta-frente carta-frente-${i} carta" data-identifier="front-face"><h2></h2><img class="imagem par-${i % (numeroCartas / 2)}" src="${bancoDeImagens[i % (numeroCartas / 2)]}"></div>
-            <div class="carta-costas carta-costas-${i} carta" data-identifier="back-face"><h2></h2><h2></h2></div>
+            <div class="carta-costas carta-costas-${i} carta" data-identifier="back-face"><h2></h2><h2></h2><img src="assets/front.png"></div>
         </figure>
         `;
     }
