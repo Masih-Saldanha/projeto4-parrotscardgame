@@ -15,12 +15,10 @@ h1 {
     margin-bottom: calc(47px - 17px);
 }
 /* DIMENSÃO DAS IMAGENS */
-/* 
 img {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
 }
-*/
 /* DIV QUE ARMAZENA AS CARTAS */
 section {
     /* box-sizing: border-box; */

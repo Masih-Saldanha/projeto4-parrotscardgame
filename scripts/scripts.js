@@ -21,17 +21,17 @@ function escolherNumeroCartas() {
     for (let i = 0; i < numeroCartas; i = i + 1) {
         renderizarCartas.innerHTML += `
         <figure class= "carta-pai carta-${i}" data-identifier="card" onclick="virarCarta(${i})">
-            <div class="carta-frente carta-frente-${i} carta" data-identifier="front-face"><h2>FRENTE ${i}</h2><img class="imagem imagem-${i}" src="${bancoDeImagens[i % (numeroCartas / 2)]}"></div>
-            <div class="carta-costas carta-costas-${i} carta" data-identifier="back-face"><h2>COSTAS ${i}</h2></div>
+            <div class="carta-frente carta-frente-${i} carta" data-identifier="front-face"><h2>FRENTE ${i}</h2><img class="imagem par-${i % (numeroCartas / 2)}" src="${bancoDeImagens[i % (numeroCartas / 2)]}"></div>
+            <div class="carta-costas carta-costas-${i} carta" data-identifier="back-face"><h2>COSTAS ${i}</h2><h2>PAR ${i % (numeroCartas / 2)}</h2></div>
         </figure>
         `;
     }
     for (i = 0; i < numeroCartas; i++) {
-        imagem = renderizarCartas.querySelector(`.carta-${i}`);
+        imagem = renderizarCartas.querySelector(`.carta-${i}`).outerHTML;
         listaDeCartas.push(imagem);
     }
     listaDeCartas.sort(comparador);
-    console.log(renderizarCartas);
+    // console.log(renderizarCartas);
     // if (parseInt(numeroCartas) === parseInt(listaDeCartas.length)) {
     //     listaDeCartas.sort(comparador);
     //     console.log(listaDeCartas);
@@ -39,14 +39,14 @@ function escolherNumeroCartas() {
 
     // console.log(imagem);
     // console.log(listaDeCartas);
-    // renderizarCartas.innerHTML = "";
+    renderizarCartas.innerHTML = "";
     for (let i = 0; i < listaDeCartas.length; i++) {
         // teste = listaDeCartas[i].innerHTML;
         // console.log(teste);
-        teste = renderizarCartas.querySelector(`.carta-${i}`);
-        let teste2 = `${listaDeCartas[i]}`;
-        console.log(teste);
-        // renderizarCartas.innerHTML += `${listaDeCartas[i]}`;
+        // teste = renderizarCartas.querySelector(`.carta-${i}`);
+        // let teste2 = `${listaDeCartas[i]}`;
+        // console.log(teste);
+        renderizarCartas.innerHTML += `${listaDeCartas[i]}`;
     }
 }
 escolherNumeroCartas();
