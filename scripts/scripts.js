@@ -8,6 +8,9 @@ let paresEncontrados = 0;
 let jogadas = 0;
 let bancoDeImagens = ["assets/bobrossparrot.gif", "assets/explodyparrot.gif", "assets/fiestaparrot.gif", "assets/metalparrot.gif", "assets/revertitparrot.gif", "assets/tripletsparrot.gif", "assets/unicornparrot.gif"];
 let imagem = undefined;
+let intervalo = undefined;
+let vitoria = false;
+let relogio = undefined;
 // FUNÇÃO DE ESCOLHER NÚMERO DE CARTAS, FAZER PARES E EMBARALHAR
 function escolherNumeroCartas() {
     while (numeroCartas < 4 || numeroCartas > 14 || (numeroCartas % 2) !== 0) {
@@ -32,6 +35,7 @@ function escolherNumeroCartas() {
     }
 }
 escolherNumeroCartas();
+
 // FUNÇÃO PARA EMBARALHAR ARRAY DE CARTAS
 function comparador() {
     return Math.random() - 0.5;
@@ -90,10 +94,38 @@ function desvirarAutomático() {
 //FUNÇÃO PARA DETECTAR E DECLARA A VITÓRIA
 function alertaVitoria() {
     if (parseInt(paresEncontrados) === parseInt(numeroCartas / 2)) {
-        alert(`Você ganhou em ${jogadas} jogadas!`);
+        vitoria = true;
+        alert(`Você ganhou em ${jogadas} jogadas em ${relogio.innerHTML} segundos!`);
+        // BÔNUS DE JOGAR NOVAMENTE BUGANDO COM CARTAS DUPLICANDO
+        // let jogarNovamente = prompt("Gostaria de jogar novamente?");
+        // if (jogarNovamente === "sim") {
+        //     reset();
+        //     // escolherNumeroCartas();
+        // }
     }
 }
-
+// FUNÇÃO DE RESETAR O JOGO
+function reset() {
+    renderizarCartas.innerHTML = ``;
+    numeroCartas = undefined;
+    virarFrente = undefined;
+    virarCostas = undefined;
+    cartasMarcadas = [];
+    paresEncontrados = 0;
+    jogadas = 0;
+    imagem = undefined;
+    vitoria = false;
+}
+// FUNÇÃO DO RELOGIO
+function tempoPassando() {
+    if (vitoria === true) {
+        clearInterval(intervalo);
+    } else {
+        relogio = document.querySelector("time");
+        relogio.innerHTML = parseInt(relogio.innerHTML) + 1;
+    }
+}
+intervalo = setInterval(tempoPassando, 1000);
 // MODELO
 
 // `
