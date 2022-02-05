@@ -11,6 +11,8 @@ let imagem = undefined;
 let intervalo = undefined;
 let vitoria = false;
 let relogio = undefined;
+let cartaSetada1 = undefined;
+let cartaSetada2 = undefined;
 // FUNÇÃO DE ESCOLHER NÚMERO DE CARTAS, FAZER PARES E EMBARALHAR
 function escolherNumeroCartas() {
     while (numeroCartas < 4 || numeroCartas > 14 || (numeroCartas % 2) !== 0) {
@@ -56,13 +58,13 @@ function virarCarta(numero) {
     // BUG QUE NÃO SEI MOTIVO NA LINHA ABAIXO (SE APAGAR BUGA O JOGO)
     carta200 = renderizarCartas.children[(cartasMarcadas[1] % 7)].children[0].children[1].classList.value; //POR ALGUM MOTIVO BUGA SE TIRAR ISSO
 
-    if (cartasMarcadas.length >= 2 && renderizarCartas.children[cartasMarcadas[0] % (numeroCartas / 2)].children[0].children[1].classList.value === renderizarCartas.children[cartasMarcadas[1] % (numeroCartas / 2)].children[0].children[1].classList.value) {
-        // BUG QUE NÃO SEI MOTIVO NA LINHA ABAIXO (SE APAGAR BUGA O JOGO)
-        // document.getElementById("virarCarta(1)")
+    if (cartasMarcadas.length >= 2 && renderizarCartas.querySelector(`.carta-${cartasMarcadas[0]}`).children[0].children[1].src === renderizarCartas.querySelector(`.carta-${cartasMarcadas[1]}`).children[0].children[1].src) {
         console.log(cartasMarcadas);
         // DESATIVA ONCLICK DAS CARTAS VIRADAS IGUAIS
-        document.querySelector(`.carta-${cartasMarcadas[0]}`).setAttribute('onclick', '');
-        document.querySelector(`.carta-${cartasMarcadas[1]}`).setAttribute('onclick', '');
+        cartaSetada1 = renderizarCartas.querySelector(`.carta-${cartasMarcadas[0]}`);
+        cartaSetada1.setAttribute('onclick', '');
+        cartaSetada2 = renderizarCartas.querySelector(`.carta-${cartasMarcadas[1]}`);
+        cartaSetada2.setAttribute('onclick', '');
         // CONTROLE DE NÚMERO DE JOGADAS E PARES ENCONTRADOS
         paresEncontrados++;
         jogadas++;
