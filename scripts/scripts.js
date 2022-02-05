@@ -4,17 +4,10 @@ let numeroCartas = undefined;
 let virarFrente = undefined;
 let virarCostas = undefined;
 let cartasMarcadas = [];
-let teste = undefined;
 let paresEncontrados = 0;
-// let carta1 = undefined;
-// let carta2 = undefined;
 let jogadas = 0;
-// poderia também, botar todos os nomes das imagens num array,
-// e chamar eles com os índices dos números baralhados...
-// tipo... nome = nomes[indicesBaralhados[i]]
 let bancoDeImagens = ["assets/bobrossparrot.gif", "assets/explodyparrot.gif", "assets/fiestaparrot.gif", "assets/metalparrot.gif", "assets/revertitparrot.gif", "assets/tripletsparrot.gif", "assets/unicornparrot.gif"];
 let imagem = undefined;
-// img src="bancoDeImagens[${i}]"
 // FUNÇÃO DE ESCOLHER NÚMERO DE CARTAS, FAZER PARES E EMBARALHAR
 function escolherNumeroCartas() {
     while (numeroCartas < 4 || numeroCartas > 14 || (numeroCartas % 2) !== 0) {
@@ -23,8 +16,8 @@ function escolherNumeroCartas() {
     for (let i = 0; i < numeroCartas; i = i + 1) {
         renderizarCartas.innerHTML += `
         <figure class= "carta-pai carta-${i}" data-identifier="card" onclick="virarCarta(${i})">
-            <div class="carta-frente carta-frente-${i} carta" data-identifier="front-face"><h2>FRENTE ${i}</h2><img class="imagem par-${i % (numeroCartas / 2)}" src="${bancoDeImagens[i % (numeroCartas / 2)]}"></div>
-            <div class="carta-costas carta-costas-${i} carta" data-identifier="back-face"><h2>COSTAS ${i}</h2><h2>PAR ${i % (numeroCartas / 2)}</h2></div>
+            <div class="carta-frente carta-frente-${i} carta" data-identifier="front-face"><h2></h2><img class="imagem par-${i % (numeroCartas / 2)}" src="${bancoDeImagens[i % (numeroCartas / 2)]}"></div>
+            <div class="carta-costas carta-costas-${i} carta" data-identifier="back-face"><h2></h2><h2></h2></div>
         </figure>
         `;
     }
@@ -49,39 +42,32 @@ function virarCarta(numero) {
     virarCostas = document.querySelector(`.carta-costas-${numero}`);
     virarFrente.classList.add("virar-frente");
     virarCostas.classList.add("virar-costas");
-    
+    //  DETECÇÃO DE CLIQUE NA MESMA CARTA
     cartasMarcadas.push(numero);
     if ((cartasMarcadas[0]) === (cartasMarcadas[1])) {
         [i % (numeroCartas / 2)]
         cartasMarcadas.splice(1);
     }
     console.log(cartasMarcadas);
+    // BUG QUE NÃO SEI MOTIVO NA LINHA ABAIXO (SE APAGAR BUGA O JOGO)
+    carta200 = renderizarCartas.children[(cartasMarcadas[1] % 7)].children[0].children[1].classList.value; //POR ALGUM MOTIVO BUGA SE TIRAR ISSO
 
-    // carta100 = renderizarCartas.children[(cartasMarcadas[0]%7)].children[0].children[1].classList.value;
-    carta200 = renderizarCartas.children[(cartasMarcadas[1]%7)].children[0].children[1].classList.value; //POR ALGUM MOTIVO BUGA SE TIRAR ISSO
-    // console.log(carta1);
-    // console.log(carta2);
-    // if (carta1 === carta2) {
-
-    // }
-    if (cartasMarcadas.length >= 2 && renderizarCartas.children[cartasMarcadas[0]%(numeroCartas/2)].children[0].children[1].classList.value === renderizarCartas.children[cartasMarcadas[1]%(numeroCartas/2)].children[0].children[1].classList.value) {
+    if (cartasMarcadas.length >= 2 && renderizarCartas.children[cartasMarcadas[0] % (numeroCartas / 2)].children[0].children[1].classList.value === renderizarCartas.children[cartasMarcadas[1] % (numeroCartas / 2)].children[0].children[1].classList.value) {
+        // BUG QUE NÃO SEI MOTIVO NA LINHA ABAIXO (SE APAGAR BUGA O JOGO)
         // document.getElementById("virarCarta(1)")
-        // renderizarCartas.children[cartasMarcadas[0]].setAttribute('onclick', '');
-        // renderizarCartas.children[cartasMarcadas[1]].setAttribute('onclick', '');
         console.log(cartasMarcadas);
+        // DESATIVA ONCLICK DAS CARTAS VIRADAS IGUAIS
         document.querySelector(`.carta-${cartasMarcadas[0]}`).setAttribute('onclick', '');
         document.querySelector(`.carta-${cartasMarcadas[1]}`).setAttribute('onclick', '');
-        // document.querySelectorAll(`section figure`)[cartasMarcadas[0]].setAttribute('onclick', '');
-        // document.querySelectorAll(`section figure`)[cartasMarcadas[1]].setAttribute('onclick', '');
-        // paresEncontrados++;
+        // CONTROLE DE NÚMERO DE JOGADAS E PARES ENCONTRADOS
+        paresEncontrados++;
         jogadas++;
-        // console.log(paresEncontrados);
+        console.log("Foram encontrados: " + paresEncontrados);
         console.log(jogadas);
         cartasMarcadas = [];
-        // console.log(cartasMarcadas);
+        setTimeout(alertaVitoria, 1000);
     } else {
         desvirarAutomático();
-        // console.log(paresEncontrados);
         jogadas++;
         console.log(jogadas);
         cartasMarcadas = [];
@@ -89,7 +75,6 @@ function virarCarta(numero) {
 }
 // FUNÇÃO PARA DESVIRAR CARTAS AUTOMATICAMENTE
 function desvirarAutomático() {
-    // virarCarta().removeAttribute('onclick');
     let cartaFrente1 = document.querySelector(`.carta-frente-${cartasMarcadas[0]}`);
     let cartaFrente2 = document.querySelector(`.carta-frente-${cartasMarcadas[1]}`);
     let cartaCostas1 = document.querySelector(`.carta-costas-${cartasMarcadas[0]}`);
@@ -100,7 +85,20 @@ function desvirarAutomático() {
         cartaFrente2.classList.remove("virar-frente");
         cartaCostas1.classList.remove("virar-costas");
         cartaCostas2.classList.remove("virar-costas");
-        // virarCarta().addAttribute('onclick');
     }, 1000);
 }
+//FUNÇÃO PARA DETECTAR E DECLARA A VITÓRIA
+function alertaVitoria() {
+    if (parseInt(paresEncontrados) === parseInt(numeroCartas / 2)) {
+        alert(`Você ganhou em ${jogadas} jogadas!`);
+    }
+}
 
+// MODELO
+
+// `
+// <figure class= "carta-pai carta-${i}" data-identifier="card" onclick="virarCarta(${i})">
+//     <div class="carta-frente carta-frente-${i} carta" data-identifier="front-face"><h2>FRENTE ${i}</h2><img class="imagem par-${i % (numeroCartas / 2)}" src="${bancoDeImagens[i % (numeroCartas / 2)]}"></div>
+//     <div class="carta-costas carta-costas-${i} carta" data-identifier="back-face"><h2>COSTAS ${i}</h2><h2>PAR ${i % (numeroCartas / 2)}</h2></div>
+// </figure>
+// `

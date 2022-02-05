@@ -16,13 +16,11 @@ h1 {
 }
 /* DIMENSÃO DAS IMAGENS */
 img {
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: 100px;
 }
 /* DIV QUE ARMAZENA AS CARTAS */
 section {
-    /* box-sizing: border-box; */
-    /* border: 1px solid black; */
     padding-bottom: 17px;
     display: flex;
     flex-wrap: wrap;
@@ -49,17 +47,14 @@ figure {
     transform-style: preserve-3d;
     box-sizing: border-box;
     border: 1px solid #99CEA8;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 .carta-frente {
-    background-color: blue;
     transform: rotateY(-180deg);
-    /* background-image: url("/assets/bobrossparrot.gif");
-    background-position: center;
-    background-size: 100px;
-    background-repeat: no-repeat; */
 }
 .carta-costas {
-    background-color: red;
     transform: rotateY(0deg);
     background-image: url("/assets/front.png");
     background-position: center;
@@ -75,15 +70,10 @@ figure {
 }
 /* MODO DESKTOP */
 @media (min-width: 336px) {
-    body {
-        background-color: rebeccapurple;
-    }
     h1 {
         font-size: 56px;
     }
     section {
-        /* box-sizing: border-box; */
-        /* border: 1px solid black; */
         padding-bottom: 17px;
         display: flex;
         flex-wrap: wrap;
